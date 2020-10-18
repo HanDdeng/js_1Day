@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数" value="">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数" value="">
+    <button id="trans-btn" onclick="dec2bin()">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+        function dec2bin() {
+            // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+            var decimalism = document.getElementById('dec-number').value;
+            var places = document.getElementById('bin-bit').value;
+            if (decimalism >= 0
+                && decimalism % 1 === 0
+            ) {
+                var arr = [];
+                do {
+                    arr.push(decimalism % 2);
+                    decimalism = parseInt(decimalism / 2);
+                } while (!(decimalism === 0));
+                arr.reverse();
+                if (places < arr.length) {
+                    document.getElementById('result').innerHTML = arr.toString().replace(/,/g, '');
+                    console.log('error')
+                } else {
+                    let time = places - arr.length;
+                    for (let i = 0; i < time; i++) {
+                        // console.log(places - arr.length);
+                        arr.unshift(0);
+                        console.log(0)
+                    }
+                    document.getElementById('result').innerHTML = arr.toString().replace(/,/g, '');
+                }
+
+            } else {
+                document.getElementById('result').innerHTML = '数字必须是正整数！！！！！！'
+            }
+        }
+
+        // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+        // Some coding
+    </script>
+</body>
+
+</html>
